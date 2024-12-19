@@ -1,7 +1,14 @@
 import React from "react";
-
+import { styled } from "@mui/material/styles";
 import { Grid, Typography, Button, ListItem } from "@mui/material";
 import { BankAccount } from "../models";
+
+const StyledListItem = styled(ListItem)(({ theme }) => ({
+  [`& .redButton`]: {
+    backgroundColor: "red",
+    color: "white",
+  },
+}));
 
 export interface BankAccountListItemProps {
   bankAccount: BankAccount;
@@ -13,7 +20,7 @@ const BankAccountListItem: React.FC<BankAccountListItemProps> = ({
   deleteBankAccount,
 }) => {
   return (
-    <ListItem data-test={`bankaccount-list-item-${bankAccount.id}`}>
+    <StyledListItem data-test={`bankaccount-list-item-${bankAccount.id}`}>
       <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
         <Grid item>
           <Typography variant="body1" color="primary" gutterBottom>
@@ -24,7 +31,7 @@ const BankAccountListItem: React.FC<BankAccountListItemProps> = ({
           <Grid item>
             <Button
               variant="contained"
-              color="secondary"
+              color="error"
               size="large"
               data-test="bankaccount-delete"
               onClick={() => {
@@ -36,7 +43,7 @@ const BankAccountListItem: React.FC<BankAccountListItemProps> = ({
           </Grid>
         )}
       </Grid>
-    </ListItem>
+    </StyledListItem>
   );
 };
 
